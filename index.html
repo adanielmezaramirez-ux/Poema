@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cinco minutos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Definiciones SVG reutilizables -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <mask id="moon-mask" maskUnits="userSpaceOnUse" x="150" y="150" width="150" height="150">
+        <circle cx="225" cy="225" r="34" fill="#fff"/>
+        <circle cx="238" cy="213" r="29" fill="#000"/>
+      </mask>
+
+      <!-- Un brazo del adorno de esquina (vertical); el otro es su reflejo -->
+      <g id="arm">
+        <path d="M272 6 Q275.5 62 272 112 Q268.5 62 272 6Z"/>
+        <circle cx="272" cy="124" r="3"/>
+        <circle cx="272" cy="146" r="10" fill="none" stroke="currentColor" stroke-width="1.6"/>
+        <circle cx="272" cy="146" r="6"/>
+        <g stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+          <path d="M272 128v4M272 160v4M254 146h4M286 146h4M259 133l3 3M285 159l3 3M259 159l3-3M285 133l3-3"/>
+        </g>
+        <circle cx="272" cy="168" r="3"/>
+        <path d="M272 178 Q274.6 192 272 206 Q269.4 192 272 178Z"/>
+        <path d="M290 160 Q292.5 168 300 170 Q292.5 172 290 180 Q287.5 172 280 170 Q287.5 168 290 160Z"/>
+        <path d="M290 184 Q292.2 200 290 218 Q287.8 200 290 184Z"/>
+      </g>
+
+      <!-- Esquina completa: luna, rayos, estrellas y líneas -->
+      <symbol id="corner" viewBox="0 0 300 300" overflow="visible">
+        <use href="#arm"/>
+        <use href="#arm" transform="matrix(0 1 1 0 0 0)"/>
+        <rect x="150" y="150" width="150" height="150" mask="url(#moon-mask)"/>
+        <path d="M200 196 Q202.4 203.6 210 206 Q202.4 208.4 200 216 Q197.6 208.4 190 206 Q197.6 203.6 200 196Z" transform="translate(12 -4)"/>
+        <g transform="translate(225 225)">
+          <path d="M50 -1.8 L82 0 L50 1.8Z" transform="rotate(-75)"/>
+          <path d="M50 -1.6 L70 0 L50 1.6Z" transform="rotate(-58)"/>
+          <path d="M50 -1.8 L84 0 L50 1.8Z" transform="rotate(-42)"/>
+          <path d="M50 -1.6 L68 0 L50 1.6Z" transform="rotate(-26)"/>
+          <path d="M50 -1.8 L82 0 L50 1.8Z" transform="rotate(-12)"/>
+          <path d="M50 -1.6 L66 0 L50 1.6Z" transform="rotate(4)"/>
+          <path d="M50 -1.8 L82 0 L50 1.8Z" transform="rotate(20)"/>
+          <path d="M50 -1.6 L68 0 L50 1.6Z" transform="rotate(36)"/>
+          <path d="M50 -1.8 L84 0 L50 1.8Z" transform="rotate(52)"/>
+          <path d="M50 -1.6 L68 0 L50 1.6Z" transform="rotate(68)"/>
+          <path d="M50 -1.8 L82 0 L50 1.8Z" transform="rotate(84)"/>
+          <path d="M50 -1.6 L66 0 L50 1.6Z" transform="rotate(100)"/>
+          <path d="M50 -1.8 L84 0 L50 1.8Z" transform="rotate(116)"/>
+          <path d="M50 -1.6 L68 0 L50 1.6Z" transform="rotate(132)"/>
+          <path d="M50 -1.8 L82 0 L50 1.8Z" transform="rotate(148)"/>
+        </g>
+      </symbol>
+
+      <!-- Sol, luna y estrella (línea fina) -->
+      <symbol id="sunmoon" viewBox="0 0 140 240" overflow="visible">
+        <g fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round">
+          <g transform="translate(70 76)">
+            <!-- rayos largos -->
+            <path d="M-4 -22 L0 -72 L4 -22" />
+            <path d="M-4 -22 L0 -48 L4 -22" transform="rotate(45)"/>
+            <path d="M-4 -22 L0 -50 L4 -22" transform="rotate(90)"/>
+            <path d="M-4 -22 L0 -48 L4 -22" transform="rotate(135)"/>
+            <path d="M-4 -22 L0 -50 L4 -22" transform="rotate(225)"/>
+            <path d="M-4 -22 L0 -48 L4 -22" transform="rotate(270)"/>
+            <path d="M-4 -22 L0 -50 L4 -22" transform="rotate(315)"/>
+            <!-- llamas -->
+            <path d="M-3 -24 C-7 -30 2 -34 0 -42 C8 -37 7 -29 3 -24" transform="rotate(22)"/>
+            <path d="M-3 -24 C-7 -30 2 -34 0 -42 C8 -37 7 -29 3 -24" transform="rotate(68)"/>
+            <path d="M-3 -24 C-7 -30 2 -34 0 -42 C8 -37 7 -29 3 -24" transform="rotate(-22)"/>
+            <path d="M-3 -24 C-7 -30 2 -34 0 -42 C8 -37 7 -29 3 -24" transform="rotate(-68)"/>
+            <path d="M-3 -24 C-7 -30 2 -34 0 -42 C8 -37 7 -29 3 -24" transform="rotate(112)"/>
+            <path d="M-3 -24 C-7 -30 2 -34 0 -42 C8 -37 7 -29 3 -24" transform="rotate(158)"/>
+            <path d="M-3 -24 C-7 -30 2 -34 0 -42 C8 -37 7 -29 3 -24" transform="rotate(-112)"/>
+            <path d="M-3 -24 C-7 -30 2 -34 0 -42 C8 -37 7 -29 3 -24" transform="rotate(-158)"/>
+            <circle r="21" fill="var(--paper)"/>
+          </g>
+          <!-- luna -->
+          <path d="M42 108 A32 32 0 1 0 100 134 A26 26 0 1 1 42 108Z" fill="var(--paper)"/>
+          <!-- estrella en la luna -->
+          <g transform="translate(66 134)">
+            <path d="M0 -13 L2 -2 L13 0 L2 2 L0 13 L-2 2 L-13 0 L-2 -2Z"/>
+          </g>
+          <!-- línea y estrella inferior -->
+          <path d="M70 160 L70 232"/>
+          <path d="M70 176 L73 195 L70 224 L67 195Z" fill="none"/>
+          <path d="M70 188 L74 198 L86 202 L74 206 L70 218 L66 206 L54 202 L66 198Z" fill="var(--paper)"/>
+        </g>
+      </symbol>
+    </defs>
+  </svg>
+
+  <div class="progress" id="progress"></div>
+  <button class="theme-toggle" id="theme" aria-label="Cambiar tema">◐</button>
+
+  <article class="paper">
+    <div class="holes" aria-hidden="true"></div>
+    <div class="margin-line" aria-hidden="true"></div>
+
+    <svg class="corner tl" viewBox="0 0 300 300" fill="currentColor" aria-hidden="true"><use href="#corner"/></svg>
+    <svg class="corner br" viewBox="0 0 300 300" fill="currentColor" aria-hidden="true"><use href="#corner"/></svg>
+
+    <header class="head">
+      <svg class="sunmoon" viewBox="0 0 140 240" aria-hidden="true"><use href="#sunmoon"/></svg>
+      <h1>Cinco minutos</h1>
+    </header>
+
+    <main class="poem">
+      <p class="stanza">Un deseó intenso me persigue,<br>no es material, supera a lo racional,<br>las almas viven en la eternidad,<br>la mia solo quiere cinco minutos.</p>
+
+      <p class="stanza">No para vivir solo eso;<br>es para decir lo que vive diario</p>
+
+      <p class="stanza">Un alma que vive en un cuerpo.<br>Un alma que sabe saber vivir fuera de él.</p>
+
+      <p class="stanza">Un alma que impulsa una mente.<br>Una mente que tiene mil ideas.</p>
+
+      <p class="stanza">Ni mil ideas, ni mil planes,<br>solo uno que se repite,<br>uno que la hace sentir vivo</p>
+
+      <p class="stanza">Algo que solo tomara cinco minutos...<br>Cinco minutos relativos.</p>
+
+      <p class="stanza">Un ciclo diario,<br>un reloj motivado,<br>Pero viviendo en una idea.</p>
+
+      <p class="stanza">Detesto esto.<br>No la rutina,<br>no el ciclo,<br>solo a ese miedo,<br>ese miedo que nace por ser conciente.</p>
+
+      <p class="stanza">No el miedo de querer con vehemencia,<br>el miedo de no poder decirlo.<br>Ya que cinco minutos bastan.</p>
+
+      <p class="stanza">No por prisa,<br>no por miedo,<br>Solo es el deseo de querer explicarlo,<br>el deseo de ya no solo decirlo al viento,<br>el deseo de poder sentirlo sin culpa.</p>
+
+      <p class="stanza">¿Culpa? ¿Es malo sentir?<br>No, pero la siento<br>No por no sentirme digno,<br>sino porque quiero que lo sepa</p>
+
+      <p class="stanza">Le quiero como no tiene idea,<br>no puedo decir que le amo,<br>no porque no quiera amarle,<br>siento amor, pero aún me falta algo,<br>no es cosa de paciencia, amar no es un destino<br>amar es el camino,<br>y a ese camino le quiero dar más de cinco minutos.</p>
+
+      <p class="stanza">Pero por ahora para expresarlo,<br>para hacerle saber que le quiero,<br>para hacerle saber la vehemencia de mi amor,<br>cinco minutos me bastarán.</p>
+
+      <p class="stanza">No porque solo sienta eso por cinco minutos,<br>mi alma solo puede decírselo en esos cinco minutos;<br>no figurados, los reales.<br>Mi sentir no nació en cinco minutos,<br>pero el tiempo para darlo a saber es ese.</p>
+
+      <p class="stanza last">Esos cinco minutos relativos<br>Porque en mucho más tiempo lo sentí,<br>cinco minutos para poderlo decir.</p>
+    </main>
+  </article>
+
+  <script src="script.js"></script>
+</body>
+</html>
