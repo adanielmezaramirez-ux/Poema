@@ -61,7 +61,33 @@
   <div class="progress" id="progress"></div>
   <button class="theme-toggle" id="theme" aria-label="Cambiar tema">◐</button>
 
-  <article class="paper">
+  <!-- ========== VISTA 1: CARTA ========== -->
+  <article class="paper" id="carta">
+    <div class="holes" aria-hidden="true"></div>
+    <div class="margin-line" aria-hidden="true"></div>
+
+    <svg class="corner tl" viewBox="0 0 300 300" fill="currentColor" aria-hidden="true"><use href="#corner"/></svg>
+    <svg class="corner br" viewBox="0 0 300 300" fill="currentColor" aria-hidden="true"><use href="#corner"/></svg>
+
+    <header class="head">
+      <h1>Para ti</h1>
+    </header>
+
+    <main class="poem letter">
+      <p class="stanza">El mundo cambia tanto y tengo miedo. Muchas veces he perdido la esperanza por tantas cosas que suceden de golpe, pero a su vez, otras tantas que han pasado en el mundo me la han devuelto, y me han recordado que todo puede mejorar.</p>
+
+      <p class="stanza">Gran parte de lo que me ha dado fuerza para echarle ganas, a pesar de lo duro que es el presente, es que seas parte de mi vida. Me haces feliz, me haces sentir que las cosas son posibles, me haces sentir querido.</p>
+
+      <p class="stanza">Decir que eres mi sol no es solo un decir. En medio de tanta incertidumbre, eres una luz que me hace sentir que todo es posible. Estoy muy agradecido de que estés en mi vida, te quiero demasiado, <em>I vehemently love you.</em></p>
+
+      <p class="stanza">El poema que escribí nace de algo que he sentido, porque la verdad te extraño, y me encantaría tener cinco minutos para decirte todo.</p>
+
+      <p class="stanza go"><a class="btn" href="#poema">Leer el poema →</a></p>
+    </main>
+  </article>
+
+  <!-- ========== VISTA 2: POEMA ========== -->
+  <article class="paper" id="poema" hidden>
     <div class="holes" aria-hidden="true"></div>
     <div class="margin-line" aria-hidden="true"></div>
 
@@ -102,6 +128,8 @@
       <p class="stanza">No porque solo sienta eso por cinco minutos,<br>mi alma solo puede decírselo en esos cinco minutos;<br>no figurados, los reales.<br>Mi sentir no nació en cinco minutos,<br>pero el tiempo para darlo a saber es ese.</p>
 
       <p class="stanza last">Esos cinco minutos relativos<br>Porque en mucho más tiempo lo sentí,<br>cinco minutos para poderlo decir.</p>
+
+      <p class="stanza go"><a class="btn" href="#carta">← Volver a la carta</a></p>
     </main>
   </article>
 

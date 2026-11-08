@@ -1,40 +1,55 @@
-// 1) Primero entra el título; cuando termina, empiezan las estrofas.
-const title = document.querySelector('.head h1');
-const stanzas = document.querySelectorAll('.stanza');
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const views = {
+  carta: document.getElementById('carta'),
+  poema: document.getElementById('poema'),
+};
+const bar = document.getElementById('progress');
 
-let started = false;
-function startStanzas() {
-  if (started) return;
-  started = true;
-  const io = new IntersectionObserver((entries) => {
+// Cada vista: primero entra el título y, al terminar, las estrofas/párrafos.
+const started = new Set();
+
+function startReveal(name) {
+  if (started.has(name)) return;
+  started.add(name);
+  const items = views[name].querySelectorAll('.stanza');
+  if (reduce) { items.forEach((s) => s.classList.add('visible')); return; }
+  const observer = new IntersectionObserver((entries) => {
     entries.forEach((e) => {
       if (e.isIntersecting) {
         e.target.classList.add('visible');
-        io.unobserve(e.target);
+        observer.unobserve(e.target);
       }
     });
   }, { threshold: 0.2 });
-  stanzas.forEach((s) => io.observe(s));
+  items.forEach((s) => observer.observe(s));
 }
 
-if (reduce) {
-  startStanzas();
-} else {
-  title.addEventListener('animationend', () => setTimeout(startStanzas, 400), { once: true });
-  setTimeout(startStanzas, 4000); // respaldo por si la animación no dispara
+function waitForTitle(name) {
+  const title = views[name].querySelector('.head h1');
+  if (reduce) return startReveal(name);
+  title.addEventListener('animationend', () => setTimeout(() => startReveal(name), 400), { once: true });
+  setTimeout(() => startReveal(name), 4000); // respaldo
 }
 
-// 2) Barra de progreso de lectura
-const bar = document.getElementById('progress');
+const armed = new Set();
+function show(name) {
+  if (!views[name]) name = 'carta';
+  for (const k in views) views[k].hidden = k !== name;
+  scrollTo(0, 0);
+  if (!armed.has(name)) { armed.add(name); waitForTitle(name); }
+  updateProgress();
+}
+
+addEventListener('hashchange', () => show(location.hash.slice(1)));
+
+// Barra de progreso de lectura
 function updateProgress() {
   const max = document.documentElement.scrollHeight - innerHeight;
   bar.style.width = (max > 0 ? (scrollY / max) * 100 : 0) + '%';
 }
 addEventListener('scroll', updateProgress, { passive: true });
-updateProgress();
 
-// 3) Tema claro/oscuro (recordado)
+// Tema claro/oscuro (recordado)
 const root = document.documentElement;
 try {
   const saved = localStorage.getItem('theme');
@@ -45,3 +60,5 @@ document.getElementById('theme').addEventListener('click', () => {
   root.dataset.theme = next;
   try { localStorage.setItem('theme', next); } catch (_) {}
 });
+
+show(location.hash.slice(1) || 'carta');

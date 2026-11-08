@@ -20,6 +20,7 @@
 }
 
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
 
 body {
   margin: 0;
@@ -70,6 +71,8 @@ body {
   background-position: 0 calc(var(--lh) * 2);
   box-shadow: 0 2px 4px rgba(0,0,0,.2), 0 18px 40px rgba(0,0,0,.25);
   border-radius: 3px;
+  min-height: calc(100vh - 6rem);
+  animation: sheetIn .8s ease both;
   transition: background-color .5s;
 }
 
@@ -131,6 +134,23 @@ body {
 .stanza.visible { opacity: 1; transform: none; }
 .stanza.last { color: var(--accent); }
 
+@keyframes sheetIn { from { opacity: 0; } to { opacity: 1; } }
+
+.letter em { color: var(--accent); }
+.letter .stanza { text-wrap: pretty; }
+.stanza.go { margin-top: calc(var(--lh) * 1); }
+.btn {
+  display: inline-block;
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 2px solid var(--accent);
+  font-weight: 600;
+  font-size: 1.15em;
+  padding: 0 .2em;
+  transition: letter-spacing .3s;
+}
+.btn:hover { letter-spacing: .04em; }
+
 @keyframes rise {
   from { opacity: 0; transform: translateY(14px); }
   to   { opacity: 1; transform: none; }
@@ -140,7 +160,7 @@ body {
 @media (max-width: 600px) {
   :root { --m: 2.8rem; }
   body { padding: 0; font-size: 1.3rem; }
-  .paper { padding-right: 1rem; border-radius: 0; }
+  .paper { padding-right: 1rem; border-radius: 0; min-height: 100vh; }
   .holes { display: none; }
   .head h1 { font-size: 2.6rem; top: calc(var(--lh) * .301); }
   .corner { width: 120px; }
