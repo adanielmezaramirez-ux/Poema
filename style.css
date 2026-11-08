@@ -86,13 +86,13 @@ body {
   width: 2.6rem;
   background: radial-gradient(circle at 1.3rem 50%,
     var(--desk) 0 .55rem, rgba(0,0,0,.25) .6rem, transparent .75rem)
-    0 0 / 100% 22rem repeat-y;
+    0 8rem / 100% 22rem repeat-y;
 }
 
 /* ---------- Adornos de esquina ---------- */
 .corner {
   position: absolute;
-  width: clamp(150px, 30vw, 300px);
+  width: clamp(140px, 24vw, 250px);
   height: auto;
   color: var(--orn);
   opacity: .85;
@@ -108,21 +108,15 @@ body {
   text-align: center;
   margin-bottom: calc(var(--lh) * 1);
 }
-.sunmoon {
-  display: block;
-  margin: 0 auto;
-  height: calc(var(--lh) * 7);
-  width: auto;
-  color: var(--orn);
-  animation: rise 2s ease both;
-}
 .head h1 {
-  margin: var(--lh) 0 0;
+  margin: 0;
   font-weight: 600;
   font-size: 3.2rem;
   line-height: calc(var(--lh) * 2);
+  position: relative;
+  top: calc(var(--lh) * .2585); /* baseline del título sobre el renglón, igual que el texto */
   color: var(--accent);
-  animation: rise 2s .5s ease both;
+  animation: rise 1.8s ease both;
 }
 
 /* ---------- Poema ---------- */
@@ -145,10 +139,12 @@ body {
 /* ---------- Móvil ---------- */
 @media (max-width: 600px) {
   :root { --m: 2.8rem; }
-  body { padding: 1rem 0; font-size: 1.4rem; }
+  body { padding: 0; font-size: 1.3rem; }
   .paper { padding-right: 1rem; border-radius: 0; }
   .holes { display: none; }
-  .head h1 { font-size: 2.6rem; }
+  .head h1 { font-size: 2.6rem; top: calc(var(--lh) * .301); }
+  .corner { width: 120px; }
+  .stanza { font-size: 1.2rem; text-wrap: balance; }
 }
 
 @media (prefers-reduced-motion: reduce) {

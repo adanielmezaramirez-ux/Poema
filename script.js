@@ -1,16 +1,31 @@
-// Aparición de estrofas al hacer scroll
+// 1) Primero entra el título; cuando termina, empiezan las estrofas.
+const title = document.querySelector('.head h1');
 const stanzas = document.querySelectorAll('.stanza');
-const io = new IntersectionObserver((entries) => {
-  entries.forEach((e) => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      io.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.25 });
-stanzas.forEach((s) => io.observe(s));
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// Barra de progreso de lectura
+let started = false;
+function startStanzas() {
+  if (started) return;
+  started = true;
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  stanzas.forEach((s) => io.observe(s));
+}
+
+if (reduce) {
+  startStanzas();
+} else {
+  title.addEventListener('animationend', () => setTimeout(startStanzas, 400), { once: true });
+  setTimeout(startStanzas, 4000); // respaldo por si la animación no dispara
+}
+
+// 2) Barra de progreso de lectura
 const bar = document.getElementById('progress');
 function updateProgress() {
   const max = document.documentElement.scrollHeight - innerHeight;
@@ -19,7 +34,7 @@ function updateProgress() {
 addEventListener('scroll', updateProgress, { passive: true });
 updateProgress();
 
-// Tema claro/oscuro (recordado)
+// 3) Tema claro/oscuro (recordado)
 const root = document.documentElement;
 try {
   const saved = localStorage.getItem('theme');
